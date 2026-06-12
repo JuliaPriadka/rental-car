@@ -8,6 +8,6 @@ pageLink:string,
 
 export default function NavLink({children,pageLink}:navLinkProps) {
     return (
-<Link href={pageLink} className="font-medium text-base hover:text-sky-700 outline-none">{children}</Link>
+<Link href={pageLink} className="text-slate-950 font-medium text-base hover:text-sky-700 outline-none">{children}</Link>
     )
 };
