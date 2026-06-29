@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Select from "./select";
-import { BrandsAndPricesList } from "@/app/lib/actions";
+import { BrandsAndPricesList } from "@/app/lib/definitions";
 import PriceInput from "./price-input";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
@@ -60,7 +60,7 @@ export default function Search({ brands, price }: BrandsAndPricesList) {
   }, [price]);
 
   return (
-    <div className="flex gap-4 justify-center items-end">
+    <div className="flex gap-4 justify-center items-end mb-11">
       <Select
         placeholder="Choose a brand"
         label="Car brand"

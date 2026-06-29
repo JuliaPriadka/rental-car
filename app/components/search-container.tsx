@@ -1,4 +1,5 @@
-import { BrandsAndPricesList, getBrandsAndPricesList } from "../lib/actions";
+import {  getBrandsAndPricesList } from "../lib/actions";
+import {BrandsAndPricesList} from "../lib/definitions"
 import Search from "./search";
 
 export default async function SearchContainer() {

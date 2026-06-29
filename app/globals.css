@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "tailwind-scrollbar";
 
 * {
   box-sizing: border-box;
@@ -9,16 +8,16 @@ body{
 color: #101828;
 }
 
-.custom-select-scrollbar::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px; 
 }
 
-.custom-select-scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent; 
   border-radius: 16px; 
 }
 
-.custom-select-scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #DADDE1; 
   border-radius: 16px; 
 }

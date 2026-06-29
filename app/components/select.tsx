@@ -56,7 +56,7 @@ export default function Select({
         />
         </div>
         {isOpen && (
-          <ul className="absolute top-12 left-0 w-51 bg-white rounded-2xl py-3 px-2 h-68 overflow-hidden overflow-y-auto custom-select-scrollbar">
+          <ul className="absolute top-12 left-0 w-51 bg-white rounded-2xl py-3 px-2 h-68 overflow-hidden overflow-y-auto">
             {data.map((item, index) => (
               <li key={index} className="text-slate-400 hover:text-slate-950 font-medium text-base cursor-pointer" onClick={()=>{
                 chooseState(String(item));
