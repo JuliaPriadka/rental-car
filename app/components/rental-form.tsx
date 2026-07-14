@@ -16,7 +16,7 @@ export default function RentalForm({ id }: string) {
 
   return state?.success ? (
     <div className="h-106 rounded-2xl bg-white flex items-center justify-center">
-      <p font-semibold text-xl>The car is succesfully booked!</p>
+      <p className="font-semibold text-xl">The car is succesfully booked!</p>
     </div>
   ) : (
     <div className="h-106 rounded-2xl bg-white p-4">
