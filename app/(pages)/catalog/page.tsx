@@ -2,7 +2,6 @@ import SearchContainer from "@/app/components/search-container";
 import Table from "@/app/components/table";
 
 
-
 export default async function Page(props: {
   searchParams?: Promise<{
     brand?: string;
@@ -11,12 +10,12 @@ export default async function Page(props: {
     maxMileage?:string;
   }>;
 }) {
-  
+  const filters = await props.searchParams;
   
     return (
       <>
         <SearchContainer/>
-        <Table/>
+        <Table filters={filters}/>
         </>
     )
 };

@@ -1,6 +1,6 @@
 'use server';
 
-import { BrandsAndPricesList, Car } from "./definitions";
+import { BrandsAndPricesList, Car, carsData, GetCarsParams } from "./definitions";
 import { z } from 'zod';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
@@ -23,17 +23,33 @@ export async function getBrandsAndPricesList (){
 }
 }
 
-export async function getCarsList (){
+export async function getCarsList ({page = 1,
+  perPage = 12,
+  brand,
+  price,
+  minMileage,
+  maxMileage,
+}: GetCarsParams = {}){
     try{
-    const res=await fetch(`${url}/cars`);
+        const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('perPage', perPage.toString());
+    
+    if (brand) params.append('brand', brand);
+    if (price) params.append('price', price);
+    if (minMileage) params.append('minMileage', minMileage);
+    if (maxMileage) params.append('maxMileage', maxMileage);
+
+    const res=await fetch(`${url}/cars?${params.toString()}`);
     if(!res.ok){
         throw new Error(`Помилка HTTP: ${res.status}`);
     }
-    const data = await res.json() as Car[];
+    const data = await res.json() as carsData;
     console.log(data); 
     return data;
 } catch (err){
     console.error("Не вдалося завантажити дані:", err);
+    throw err;
 }
 }
 

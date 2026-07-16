@@ -40,3 +40,21 @@ export interface carsData{
    page: number,
   perPage: number,
 }
+
+export interface GetCarsParams {
+  page?: number;
+  perPage?: number;
+  brand?: string;
+  price?: string;
+  minMileage?: string;
+  maxMileage?: string;
+}
+
+export interface TableProps {
+  filters: {
+    brand?: string;
+    price?: string;
+    minMileage?: string;
+    maxMileage?: string;
+  };
+}
