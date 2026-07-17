@@ -7,16 +7,24 @@ import PriceInput from "./price-input";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export default function Search({ brands, price }: BrandsAndPricesList) {
-  const [chosenBrand, setChosenBrand] = useState("");
-  const [chosenPrice, setChosenPrice] = useState("");
-  const [mileageFrom, setMileageFrom] = useState("");
-  const [mileageTo, setMileageTo] = useState("");
-  const [brandPopupIsOpen, setBrandPopupIsOpen] = useState(false);
-  const [pricePopupIsOpen, setPricePopupIsOpen] = useState(false);
-
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+
+  const [chosenBrand, setChosenBrand] = useState(
+    searchParams?.get("brand")?.toString() || "",
+  );
+  const [chosenPrice, setChosenPrice] = useState(
+    searchParams?.get("price")?.toString() || "",
+  );
+  const [mileageFrom, setMileageFrom] = useState(
+    searchParams?.get("minMileage")?.toString() || "",
+  );
+  const [mileageTo, setMileageTo] = useState(
+    searchParams?.get("maxMileage")?.toString() || "",
+  );
+  const [brandPopupIsOpen, setBrandPopupIsOpen] = useState(false);
+  const [pricePopupIsOpen, setPricePopupIsOpen] = useState(false);
 
   const handleSearchClick = () => {
     const params = new URLSearchParams(searchParams);

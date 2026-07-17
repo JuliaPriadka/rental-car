@@ -38,9 +38,10 @@ export default function Table({filters}: TableProps) {
   });
 
   if (status === 'pending') return <div className="mt-6 text-center">Загрузка данных...</div>;
-  if (status === 'error') return <div className="mt-6 text-red-500 text-center">Ошибка при загрузке</div>;
+  if (status === 'error') return <div className="mt-6 text-red-500 text-center">Download error</div>;
 
  const cars = data?.pages.flatMap((page) => page?.cars || []) || [];
+ 
 
     return (
         <>
@@ -73,7 +74,7 @@ export default function Table({filters}: TableProps) {
           <button
             onClick={() => fetchNextPage()}
             disabled={!hasNextPage || isFetchingNextPage}
-            className="w-39 h-11 flex items-center justify-center mt-8 rounded-2xl border border-solid border-sky-500 shadow-md hover:border-sky-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+            className="w-39 h-11 flex items-center justify-center mt-8 rounded-2xl border border-solid border-sky-500 shadow-md hover:border-sky-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition ml-auto mr-auto"
           >
             {isFetchingNextPage
               ? 'Loading...'
