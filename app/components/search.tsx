@@ -35,7 +35,7 @@ export default function Search({ brands, price }: BrandsAndPricesList) {
     replace(`${pathname}?${params.toString()}`);
   };
 
-  const handleClearClick = () => {
+  const handleClearSearchClick = () => {
     const params = new URLSearchParams(searchParams);
     setChosenBrand("");
     setChosenPrice("");
@@ -103,8 +103,8 @@ export default function Search({ brands, price }: BrandsAndPricesList) {
         </button>
         <button
           type="button"
-          className="absolute top-9 left-1/2 -translate-x-1/2 translate-y-1/2 whitespace-nowrap text-slate-400 font-medium text-base"
-          onClick={handleClearClick}
+          className="absolute top-9 left-1/2 -translate-x-1/2 translate-y-1/2 whitespace-nowrap text-slate-400 font-medium text-base cursor-pointer"
+          onClick={handleClearSearchClick}
         >
           Clear filters
         </button>
