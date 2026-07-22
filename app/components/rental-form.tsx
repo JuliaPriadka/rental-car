@@ -6,7 +6,10 @@ import clsx from "clsx";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 export default function RentalForm({ id }: string) {
-  const initialState: State = { message: null, errors: {} };
+  const initialState: State = {success: false, 
+    message: '', 
+    errors: {}, 
+    values: { name: '', email: '', comment: '' }};
   const [state, formAction] = useActionState(
     (prevState: any, formData: FormData) => rentCar(id, prevState, formData),
     { success: false, message: '' }
@@ -39,6 +42,7 @@ export default function RentalForm({ id }: string) {
                 : "bg-neutral-100 ",
             )}
             placeholder="Name*"
+        defaultValue={state?.values?.name}
           />
           {state?.errors?.name && (
             <AiOutlineExclamationCircle className="absolute right-3 top-3 w-6 h-6 text-[#EC383B]" />
@@ -70,6 +74,7 @@ export default function RentalForm({ id }: string) {
                 : "bg-neutral-100 ",
             )}
             placeholder="Email*"
+            defaultValue={state?.values?.email}
           />
           {state?.errors?.email && (
             <AiOutlineExclamationCircle className="absolute right-3 top-3 w-6 h-6 text-[#EC383B]" />
@@ -100,6 +105,7 @@ export default function RentalForm({ id }: string) {
                 : "bg-neutral-100 ",
             )}
             placeholder="Comment*"
+            defaultValue={state?.values?.comment}
           />
           {state?.errors?.comment && (
             <AiOutlineExclamationCircle className="absolute right-3 top-3 w-6 h-6 text-[#EC383B]" />

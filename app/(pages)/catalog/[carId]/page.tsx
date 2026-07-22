@@ -3,6 +3,7 @@ import RentalForm from "@/app/components/rental-form";
 import { getCarById } from "@/app/lib/actions";
 import { Car } from "@/app/lib/definitions";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export default async function Page(props: {
   params: Promise<{ carId: string }>;
@@ -10,6 +11,10 @@ export default async function Page(props: {
   const params = await props.params;
   const id = params.carId;
   const car = (await getCarById(id)) as Car;
+
+  if (!car) {
+    notFound();
+  }
 
   return (
     <div className="grid grid-cols-[640px_1fr] gap-8">

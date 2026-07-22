@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Select from "./select";
 import { BrandsAndPricesList } from "@/app/lib/definitions";
 import PriceInput from "./price-input";
@@ -9,22 +9,21 @@ import { usePathname, useSearchParams, useRouter } from "next/navigation";
 export default function Search({ brands, price }: BrandsAndPricesList) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
+  const router = useRouter();
 
-  const [chosenBrand, setChosenBrand] = useState(
-    searchParams?.get("brand")?.toString() || "",
-  );
-  const [chosenPrice, setChosenPrice] = useState(
-    searchParams?.get("price")?.toString() || "",
-  );
-  const [mileageFrom, setMileageFrom] = useState(
-    searchParams?.get("minMileage")?.toString() || "",
-  );
-  const [mileageTo, setMileageTo] = useState(
-    searchParams?.get("maxMileage")?.toString() || "",
-  );
+  const [chosenBrand, setChosenBrand] = useState("");
+  const [chosenPrice, setChosenPrice] = useState("");
+  const [mileageFrom, setMileageFrom] = useState("");
+  const [mileageTo, setMileageTo] = useState("");
   const [brandPopupIsOpen, setBrandPopupIsOpen] = useState(false);
   const [pricePopupIsOpen, setPricePopupIsOpen] = useState(false);
+
+  useEffect(() => {
+    setChosenBrand(searchParams.get('brand') || '');
+    setChosenPrice(searchParams.get('price') || '');
+    setMileageFrom(searchParams.get('minMileage') || '');
+    setMileageTo(searchParams.get('maxMileage') || '');
+  }, [searchParams]);
 
   const handleSearchClick = () => {
     const params = new URLSearchParams(searchParams);
@@ -40,7 +39,7 @@ export default function Search({ brands, price }: BrandsAndPricesList) {
     if (mileageTo !== "") {
       params.set("maxMileage", mileageTo);
     }
-    replace(`${pathname}?${params.toString()}`);
+     router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleClearSearchClick = () => {
@@ -53,7 +52,7 @@ export default function Search({ brands, price }: BrandsAndPricesList) {
     params.delete("price");
     params.delete("minMileage");
     params.delete("maxMileage");
-    replace(`${pathname}?${params.toString()}`);
+    router.push(pathname);
   };
 
   const priceValues = useMemo(() => {
