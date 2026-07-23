@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+A modern web application built with Next.js, TypeScript, Tailwind CSS, and TanStack Query. The application allows users to browse available rental cars, view detailed specifications for each vehicle, and submit booking requests with real-time feedback.
 
-## Getting Started
+Features
+Car Catalog: View all available rental cars with real-time filtering (by brand, price, and mileage) and infinite scroll pagination.
 
-First, run the development server:
+Detailed Car View: Clicking the "Read more" button opens a detailed page for the selected vehicle in a new tab.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Rental Booking Form: Dedicated form for reserving a car, complete with field validation and preservation of user input upon validation errors.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Interactive Notifications: Instant notification feedback informing the user upon successful car reservation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Robust 404 Handling: Custom 404 pages for both non-existent routes and invalid car IDs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+Tech Stack
+Framework: Next.js (App Router)
 
-To learn more about Next.js, take a look at the following resources:
+Language: TypeScript
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Styling: Tailwind CSS
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Data Fetching & Caching: TanStack Query (React Query v5)
 
-## Deploy on Vercel
+Icons & UI: React Icons
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Usage
+Navigate to the Catalogue page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Filter cars using the search inputs (Brand, Price range, Min/Max Mileage).
+
+Click the "Read more" button on any car card to open the vehicle details in a new tab.
+
+Fill in the required fields in the Rental Form (Name, Email, Comment).
+
+Submit the form to receive an instant notification confirming your booking.
