@@ -1,11 +1,12 @@
 "use client";
 
-import { getCarsList } from "@/app/lib/actions";
+import { getCarsList } from "@/app/lib/api";
 import { TableProps } from "@/app/lib/definitions";
 import Card from "./card";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { CarCardSkeleton } from "../lib/skeletons";
 
 const LIMIT = 12;
 
@@ -40,22 +41,32 @@ export default function Table({ filters }: TableProps) {
       },
     });
 
-  if (status === "pending")
-    return <div className="mt-6 text-center">Loading...</div>;
-  if (status === "error")
-    return <div className="mt-6 text-red-500 text-center">Download error</div>;
-
   const cars = data?.pages.flatMap((page) => page?.cars || []) || [];
 
   return (
     <>
-      {cars.length > 0 ? (
+          {status==="pending" && (
+        <div className="animate-pulse grid grid-cols-4 gap-8 grid-rows-3">
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                    <CarCardSkeleton/>
+                           
+                </div>
+      )}
+      {cars.length > 0 && (
         <div className="grid grid-cols-4 gap-8 overflow-y-auto">
           {cars.map((item) => (
             <Card key={item.id} car={item} />
           ))}
         </div>
-      ) : (
+      ) } 
+
+      {(cars.length===0&&status!=="pending")&&(
         <div className="flex flex-col gap-10 items-center">
           <Image
             height={388}

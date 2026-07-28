@@ -1,6 +1,6 @@
 import CarInfo from "@/app/components/car-info";
 import RentalForm from "@/app/components/rental-form";
-import { getCarById } from "@/app/lib/actions";
+import { getCarById } from "@/app/lib/api";
 import { Car } from "@/app/lib/definitions";
 import Image from "next/image";
 import { notFound } from "next/navigation";

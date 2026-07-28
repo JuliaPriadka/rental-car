@@ -1,21 +1,5 @@
-import SearchContainer from "@/app/components/search-container";
-import Table from "@/app/components/table";
 
 
-export default async function Page(props: {
-  searchParams?: Promise<{
-    brand?: string;
-    price?: string;
-    minMileage?:string;
-    maxMileage?:string;
-  }>;
-}) {
-  const filters = await props.searchParams;
+export default async function Page(){
   
-    return (
-      <>
-        <SearchContainer/>
-        <Table filters={filters}/>
-        </>
-    )
 };

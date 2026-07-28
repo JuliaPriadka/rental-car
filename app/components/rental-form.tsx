@@ -1,18 +1,20 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState} from "react";
 import { rentCar, State } from "../lib/actions";
 import clsx from "clsx";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 
-export default function RentalForm({ id }: string) {
-  const initialState: State = {success: false, 
+export default function RentalForm({ id }: { id: string }) {
+  const initialState: State = {
+    success: false, 
     message: '', 
     errors: {}, 
     values: { name: '', email: '', comment: '' }};
-  const [state, formAction] = useActionState(
-    (prevState: any, formData: FormData) => rentCar(id, prevState, formData),
-    { success: false, message: '' }
+
+  const [state, formAction, isPending] = useActionState(
+    (prevState: State, formData: FormData) => rentCar(id, prevState, formData),
+    initialState
   );
   
   
@@ -35,6 +37,7 @@ export default function RentalForm({ id }: string) {
             type="text"
             name="name"
             id="name"
+            disabled={isPending}
             className={clsx(
               "h-12 p-3 w-full rounded-2xl text-base font-medium placeholder:text-slate-400 truncate",
               state?.errors?.name
@@ -67,6 +70,7 @@ export default function RentalForm({ id }: string) {
             type="email"
             name="email"
             id="email"
+            disabled={isPending}
             className={clsx(
               "h-12 p-3 w-full rounded-2xl text-base font-medium placeholder:text-slate-400 truncate",
               state?.errors?.email
@@ -98,6 +102,7 @@ export default function RentalForm({ id }: string) {
           <textarea
             name="comment"
             id="comment"
+            disabled={isPending}
             className={clsx(
               "h-22 p-3 w-full rounded-2xl text-base font-medium placeholder:text-slate-400 resize-none truncate",
               state?.errors?.comment
@@ -127,9 +132,10 @@ export default function RentalForm({ id }: string) {
         </div>
         <button
           type="submit"
+          disabled={isPending}
           className="bg-sky-500 h-11 text-white rounded-2xl cursor-pointer"
         >
-          Send
+          {isPending? "Sending":"Send"}
         </button>
       </form>
     </div>

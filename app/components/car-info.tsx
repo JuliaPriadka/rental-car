@@ -1,4 +1,4 @@
-import { CiLocationOn, CiCircleCheck } from "react-icons/ci";
+import { CiLocationOn} from "react-icons/ci";
 import { BsCalendar2Week, BsFuelPump } from "react-icons/bs";
 import { formatCarType } from "../lib/utils";
 import { IoCarSportOutline } from "react-icons/io5";
