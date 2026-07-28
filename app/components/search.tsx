@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Select from "./select";
 import { BrandsAndPricesList } from "@/app/lib/definitions";
 import PriceInput from "./price-input";
@@ -11,47 +11,82 @@ export default function Search({ brands, price }: BrandsAndPricesList) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [chosenBrand, setChosenBrand] = useState("");
-  const [chosenPrice, setChosenPrice] = useState("");
-  const [mileageFrom, setMileageFrom] = useState("");
-  const [mileageTo, setMileageTo] = useState("");
   const [brandPopupIsOpen, setBrandPopupIsOpen] = useState(false);
   const [pricePopupIsOpen, setPricePopupIsOpen] = useState(false);
 
-  useEffect(() => {
-    setChosenBrand(searchParams.get('brand') || '');
-    setChosenPrice(searchParams.get('price') || '');
-    setMileageFrom(searchParams.get('minMileage') || '');
-    setMileageTo(searchParams.get('maxMileage') || '');
-  }, [searchParams]);
+  const urlBrand = searchParams.get('brand') || '';
+  const urlPrice = searchParams.get('price') || '';
+  const urlMinMileage = searchParams.get('minMileage') || '';
+  const urlMaxMileage = searchParams.get('maxMileage') || '';
+
+
+  const [prevParams, setPrevParams] = useState({
+    brand: urlBrand,
+    price: urlPrice,
+    minMileage: urlMinMileage,
+    maxMileage: urlMaxMileage,
+  });
+
+
+  const [chosenBrand, setChosenBrand] = useState(urlBrand);
+  const [chosenPrice, setChosenPrice] = useState(urlPrice);
+  const [mileageFrom, setMileageFrom] = useState(urlMinMileage);
+  const [mileageTo, setMileageTo] = useState(urlMaxMileage);
+
+
+  if (
+    prevParams.brand !== urlBrand ||
+    prevParams.price !== urlPrice ||
+    prevParams.minMileage !== urlMinMileage ||
+    prevParams.maxMileage !== urlMaxMileage
+  ) {
+    setPrevParams({
+      brand: urlBrand,
+      price: urlPrice,
+      minMileage: urlMinMileage,
+      maxMileage: urlMaxMileage,
+    });
+    setChosenBrand(urlBrand);
+    setChosenPrice(urlPrice);
+    setMileageFrom(urlMinMileage);
+    setMileageTo(urlMaxMileage);
+  }
 
   const handleSearchClick = () => {
     const params = new URLSearchParams(searchParams);
-    if (chosenBrand !== "") {
+    if (chosenBrand) {
       params.set("brand", chosenBrand);
+    }else {
+      params.delete("brand");
     }
-    if (chosenPrice !== "") {
+
+    if (chosenPrice ) {
       params.set("price", chosenPrice);
+    }else {
+      params.delete("price");
     }
-    if (mileageFrom !== "") {
+
+    if (mileageFrom ) {
       params.set("minMileage", mileageFrom);
+    }else {
+      params.delete("minMileage");
     }
+
     if (mileageTo !== "") {
       params.set("maxMileage", mileageTo);
+    }else {
+      params.delete("maxMileage");
     }
+
      router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleClearSearchClick = () => {
-    const params = new URLSearchParams(searchParams);
-    setChosenBrand("");
+       setChosenBrand("");
     setChosenPrice("");
     setMileageFrom("");
     setMileageTo("");
-    params.delete("brand");
-    params.delete("price");
-    params.delete("minMileage");
-    params.delete("maxMileage");
+
     router.push(pathname);
   };
 
