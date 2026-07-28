@@ -14,8 +14,7 @@ export async function getBrandsAndPricesList() : Promise<BrandsAndPricesList>{
       throw new Error(`Помилка HTTP: ${res.status}`);
     }
     const data = (await res.json()) as BrandsAndPricesList;
-    console.log(data);
-    return data;
+     return data;
   } catch (err) {
     throw new Error("Не вдалося завантажити дані:", err);
   }
@@ -44,8 +43,7 @@ export async function getCarsList({
       throw new Error(`Помилка HTTP: ${res.status}`);
     }
     const data = (await res.json()) as carsData;
-    console.log(data);
-    return data;
+       return data;
   } catch (err) {
     throw new Error("Не вдалося завантажити дані:", err);
    
@@ -62,8 +60,7 @@ export async function getCarById(id: string): Promise<Car | null> {
       throw new Error(`Помилка HTTP: ${res.status}`);
     }
     const data = (await res.json()) as Car;
-    console.log(data);
-    return data;
+     return data;
   } catch (err) {
     throw new Error("Не вдалося завантажити дані:", err);
   }

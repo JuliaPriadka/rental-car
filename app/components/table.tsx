@@ -18,7 +18,7 @@ export default function Table({ filters }: TableProps) {
     router.push(pathname);
   };
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status,isError, refetch,} =
     useInfiniteQuery({
       queryKey: ["cars", filters],
 
@@ -58,7 +58,19 @@ export default function Table({ filters }: TableProps) {
                            
                 </div>
       )}
-      {cars.length > 0 && (
+      {isError&&(<div className="flex flex-col items-center justify-center gap-2">
+      <h2 className="text-xl font-semibold">Something went wrong</h2>
+      <button
+        className="mt-4 rounded-md bg-sky-500 px-4 py-2 text-xl text-white hover:bg-sky-700"
+        onClick={
+         
+          () => refetch()
+        }
+      >
+        Try again
+      </button>
+    </div>)}
+      {(!isError&&cars.length > 0) && (
         <div className="grid grid-cols-4 gap-8 overflow-y-auto">
           {cars.map((item) => (
             <Card key={item.id} car={item} />
@@ -66,7 +78,7 @@ export default function Table({ filters }: TableProps) {
         </div>
       ) } 
 
-      {(cars.length===0&&status!=="pending")&&(
+      {(!isError&&cars.length===0&&status!=="pending")&&(
         <div className="flex flex-col gap-10 items-center">
           <Image
             height={388}
@@ -89,7 +101,7 @@ export default function Table({ filters }: TableProps) {
           </button>
         </div>
       )}
-      {cars.length > 0 && hasNextPage && (
+      {(!isError&&cars.length > 0 && hasNextPage) && (
         <button
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}

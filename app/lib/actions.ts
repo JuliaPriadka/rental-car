@@ -61,8 +61,7 @@ export async function rentCar(
     }
 
     const data = await res.json();
-    console.log(data);
-    return { success: true, message: "Авто успішно орендовано!",values: { name: "", email: "", comment: "" } };
+        return { success: true, message: "Авто успішно орендовано!",values: { name: "", email: "", comment: "" } };
   } catch (err) {
     console.error("Не вдалося забронювати авто:", err);
     return { success: false, message: "Помилка сервера. Спробуйте пізніше." ,values: rawValues,};
