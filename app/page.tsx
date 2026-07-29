@@ -8,7 +8,7 @@ export default function Home() {
        
         className="h-[calc(100vh-68px)] w-full relative overflow-hidden flex justify-center items-end"
       >
-        <Image src="/CarPicture.jpg" alt="car picture" fill loading="eager"/>
+        <Image src="/CarPicture.jpg" alt="car picture" fill loading="eager" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
       <div className="flex flex-col text-white items-center absolute bottom-15">
 <h1 className="font-bold text-6xl mb-4">Find your perfect rental car</h1>
 <p className="font-semibold text-2xl mb-10">Reliable and budget-friendly rentals for any journey</p>
