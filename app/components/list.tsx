@@ -1,6 +1,10 @@
 import { CiCircleCheck } from "react-icons/ci";
 
-export default function List({data}:string[]) {
+interface DataProps {
+  data:string[];
+}
+
+export default function List({data}:DataProps) {
     return (
         <ul className="flex flex-col gap-4 text-base font-medium ">
                   {data.map((item, index) => (

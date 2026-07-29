@@ -12,7 +12,7 @@ export default async function TableContainer(
 ) {
     const filters = await props.searchParams;
 
-    return <Table filters={filters}/>
+    return <Table filters={filters?? {}}/>
     
 };
 

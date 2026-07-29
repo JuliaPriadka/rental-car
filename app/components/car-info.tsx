@@ -7,7 +7,11 @@ import { GoGear } from "react-icons/go";
 import { Car } from "../lib/definitions";
 import List from "./list";
 
-export default async function CarInfo({ car }: Car) {
+interface CarInfoProps {
+  car: Car;
+}
+
+export default async function CarInfo({ car }: CarInfoProps) {
   return (
     <div className="h-242 rounded-2xl pt-8 pl-7 pr-7 bg-white overflow-y-auto">
       <div className="flex gap-4 mb-2">

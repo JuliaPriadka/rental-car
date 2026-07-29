@@ -3,7 +3,11 @@ import { Car } from "../lib/definitions";
 import { formatCarType } from "@/app/lib/utils";
 import Link from "next/link";
 
-export default function Card({ car }: Car) {
+interface CardProps {
+  car : Car;
+}
+
+export default function Card({ car }: CardProps) {
   return (
     <div className="w-69 bg-white p-4 rounded-2xl">
       <Image

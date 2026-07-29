@@ -10,13 +10,15 @@ const url = process.env.NEXT_PUBLIC_DATABASE_URL;
 export async function getBrandsAndPricesList() : Promise<BrandsAndPricesList>{
   try {
     const res = await fetch(`${url}/cars/filters`);
+     
     if (!res.ok) {
       throw new Error(`Помилка HTTP: ${res.status}`);
     }
     const data = (await res.json()) as BrandsAndPricesList;
      return data;
   } catch (err) {
-    throw new Error("Не вдалося завантажити дані:", err);
+    console.error("Не вдалося завантажити дані:", err);
+    throw err;
   }
 }
 
@@ -45,7 +47,8 @@ export async function getCarsList({
     const data = (await res.json()) as carsData;
        return data;
   } catch (err) {
-    throw new Error("Не вдалося завантажити дані:", err);
+    console.error("Не вдалося завантажити дані:", err);
+    throw err;
    
   }
 }
@@ -62,6 +65,7 @@ export async function getCarById(id: string): Promise<Car | null> {
     const data = (await res.json()) as Car;
      return data;
   } catch (err) {
-    throw new Error("Не вдалося завантажити дані:", err);
+    console.error("Не вдалося завантажити дані:", err);
+    throw err;
   }
 }
